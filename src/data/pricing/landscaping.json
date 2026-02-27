@@ -1,0 +1,88 @@
+{
+  "trade": "landscaper",
+  "display_name": "Landscaper",
+  "categories": [
+    {
+      "category": "Lawn Care",
+      "tasks": [
+        {
+          "task": "lawn_mowing",
+          "aliases": ["mow lawn", "grass cutting", "lawn maintenance", "yard mowing"],
+          "base_low": 30,
+          "base_mid": 60,
+          "base_high": 100,
+          "unit": "per_job",
+          "typical_duration_hours": 1,
+          "common_inclusions": ["mowing", "edging", "blowing clippings"],
+          "common_exclusions": ["fertilizing", "weed treatment", "leaf removal", "hedge trimming"],
+          "common_red_flags": ["no edging included", "inconsistent schedule"]
+        },
+        {
+          "task": "tree_trimming",
+          "aliases": ["trim trees", "tree pruning", "tree cutting", "branch removal"],
+          "base_low": 200,
+          "base_mid": 500,
+          "base_high": 1200,
+          "unit": "per_job",
+          "typical_duration_hours": 3,
+          "common_inclusions": ["labor", "pruning", "debris removal", "cleanup"],
+          "common_exclusions": ["tree removal", "stump grinding", "emergency/storm work"],
+          "common_red_flags": ["topping trees", "no insurance", "leaving debris"]
+        },
+        {
+          "task": "tree_removal",
+          "aliases": ["remove tree", "cut down tree", "tree takedown"],
+          "base_low": 400,
+          "base_mid": 900,
+          "base_high": 2000,
+          "unit": "per_job",
+          "typical_duration_hours": 4,
+          "common_inclusions": ["labor", "felling", "cutting", "debris removal"],
+          "common_exclusions": ["stump grinding", "permits", "crane for large trees"],
+          "common_red_flags": ["no insurance", "no plan for falling direction", "leaving stump high"]
+        }
+      ]
+    },
+    {
+      "category": "Hardscaping",
+      "tasks": [
+        {
+          "task": "patio_installation",
+          "aliases": ["build patio", "paver patio", "new patio", "stone patio"],
+          "base_low": 1500,
+          "base_mid": 3500,
+          "base_high": 7000,
+          "unit": "per_job",
+          "typical_duration_hours": 16,
+          "common_inclusions": ["labor", "excavation", "base material", "leveling", "installation"],
+          "common_exclusions": ["cost of pavers/stone", "drainage solutions", "sealing"],
+          "common_red_flags": ["inadequate base preparation", "no compaction", "poor drainage planning"]
+        },
+        {
+          "task": "fence_installation",
+          "aliases": ["install fence", "new fence", "fence building", "privacy fence", "wood fence"],
+          "base_low": 1500,
+          "base_mid": 3500,
+          "base_high": 6000,
+          "unit": "per_job",
+          "typical_duration_hours": 16,
+          "common_inclusions": ["labor", "post setting", "panel installation", "gate"],
+          "common_exclusions": ["cost of materials", "permits", "old fence removal", "property survey"],
+          "common_red_flags": ["not checking property lines", "posts not deep enough", "no concrete for posts"]
+        },
+        {
+          "task": "retaining_wall",
+          "aliases": ["build retaining wall", "retaining wall installation", "garden wall"],
+          "base_low": 1500,
+          "base_mid": 4000,
+          "base_high": 8000,
+          "unit": "per_job",
+          "typical_duration_hours": 16,
+          "common_inclusions": ["labor", "excavation", "drainage", "construction"],
+          "common_exclusions": ["cost of materials", "engineering for walls over 4ft", "permits"],
+          "common_red_flags": ["no drainage behind wall", "no compaction", "walls over 4ft without engineering"]
+        }
+      ]
+    }
+  ]
+}

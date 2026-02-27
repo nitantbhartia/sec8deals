@@ -1,0 +1,43 @@
+{
+  "slug": "house-painting-cost",
+  "title": "How Much Does House Painting Cost in 2026?",
+  "meta_description": "Average house painting costs range from $300 to $7,000 depending on interior vs exterior. Get detailed pricing for rooms, cabinets, and whole-house painting.",
+  "trade": "painter",
+  "hero_summary": "Interior room painting typically costs $300 to $1,000 per room. Exterior house painting averages $2,000 to $7,000 for a full home. Cabinet painting runs $1,200 to $5,000. Prices depend on prep work, paint quality, and your location.",
+  "price_range": {
+    "low": 300,
+    "mid": 700,
+    "high": 1200,
+    "unit": "per room (interior)"
+  },
+  "sections": [
+    {
+      "heading": "Average Painting Costs by Project",
+      "content": "Here are typical price ranges for common painting projects:\n\n- **Single room (walls only)**: $300 - $1,000\n- **Trim and baseboards**: $200 - $900\n- **Kitchen cabinets**: $1,200 - $5,000\n- **Exterior (full house)**: $2,000 - $7,000\n- **Deck staining**: $400 - $1,500\n- **Whole house interior**: $2,500 - $8,000\n\nThese are labor costs only. Paint typically adds $30-$70 per gallon, and a standard room uses 1-2 gallons."
+    },
+    {
+      "heading": "What Affects Painting Costs",
+      "content": "The biggest pricing factors for painting projects:\n\n- **Prep work**: Walls with holes, cracks, or peeling paint need extra prep that adds 20-50% to the cost.\n- **Number of coats**: Most jobs require 2 coats. Dark-to-light color changes may need 3+ coats with primer.\n- **Ceiling height**: Rooms with vaulted or tall ceilings require ladders or scaffolding, increasing cost.\n- **Trim and detail work**: Crown molding, wainscoting, and multi-color schemes add time and cost.\n- **Paint quality**: Professional-grade paint costs more but lasts longer and covers better.\n- **Wallpaper removal**: Removing wallpaper before painting adds $1-$3 per square foot."
+    },
+    {
+      "heading": "Hiring a Painter: What to Ask",
+      "content": "Before hiring a painter, ask these questions:\n\n1. **Is prep work included?** Make sure patching, sanding, and priming are in the quote.\n2. **How many coats?** Two coats is standard — one coat is a red flag.\n3. **What paint brand/grade?** Ask for the specific product, not just \"premium paint.\"\n4. **What's the warranty?** Good painters warranty their work for 1-2 years.\n5. **Do you move furniture?** Some include this, others charge extra.\n6. **What's the timeline?** A single room should take 1 day. A full house interior takes 3-5 days."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How much does it cost to paint a room?",
+      "answer": "A standard 12x12 room costs $300 to $700 for walls only (labor). Add $200-$400 for trim and ceiling. Total with paint and materials typically runs $400 to $1,000. Larger rooms, high ceilings, or extensive prep work will cost more."
+    },
+    {
+      "question": "Is it cheaper to paint or replace kitchen cabinets?",
+      "answer": "Painting is dramatically cheaper. Professional cabinet painting costs $1,200-$5,000, while replacement costs $8,000-$25,000+. Painting is a great option if your cabinets are structurally sound — the results can look nearly as good as new for a fraction of the price."
+    },
+    {
+      "question": "How often should you repaint your house exterior?",
+      "answer": "Most exterior paint jobs last 5-10 years depending on climate, sun exposure, and paint quality. In harsh climates, you may need to repaint every 4-5 years. Quality paint and proper prep work extend the lifespan significantly."
+    }
+  ],
+  "related_guides": ["plumber-cost", "electrician-cost"],
+  "last_updated": "2026-02-15"
+}

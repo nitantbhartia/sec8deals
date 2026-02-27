@@ -1,0 +1,153 @@
+{
+  "trade": "plumber",
+  "display_name": "Plumber",
+  "categories": [
+    {
+      "category": "Fixture Installation",
+      "tasks": [
+        {
+          "task": "faucet_replacement",
+          "aliases": ["replace faucet", "new faucet", "faucet install", "kitchen faucet", "bathroom faucet", "leaky faucet"],
+          "base_low": 150,
+          "base_mid": 275,
+          "base_high": 450,
+          "unit": "per_job",
+          "typical_duration_hours": 1.5,
+          "common_inclusions": ["labor", "faucet removal", "new faucet installation", "leak testing"],
+          "common_exclusions": ["cost of faucet", "supply line replacement", "valve replacement", "wall repair"],
+          "common_red_flags": ["quoting under $100 for full replacement", "no mention of leak testing"]
+        },
+        {
+          "task": "toilet_installation",
+          "aliases": ["install toilet", "replace toilet", "new toilet", "toilet swap"],
+          "base_low": 200,
+          "base_mid": 350,
+          "base_high": 600,
+          "unit": "per_job",
+          "typical_duration_hours": 2,
+          "common_inclusions": ["labor", "wax ring", "toilet removal and disposal", "installation and testing"],
+          "common_exclusions": ["cost of toilet", "flange repair", "floor repair"],
+          "common_red_flags": ["no disposal of old toilet", "quoting without seeing current setup"]
+        },
+        {
+          "task": "toilet_repair",
+          "aliases": ["fix toilet", "running toilet", "toilet won't flush", "wobbly toilet", "rocking toilet", "toilet rocks"],
+          "base_low": 100,
+          "base_mid": 200,
+          "base_high": 350,
+          "unit": "per_job",
+          "typical_duration_hours": 1,
+          "common_inclusions": ["diagnosis", "labor", "basic parts like flapper or fill valve"],
+          "common_exclusions": ["toilet replacement", "flange repair", "floor damage"],
+          "common_red_flags": ["recommending full replacement for simple fix", "no diagnosis before quoting"]
+        },
+        {
+          "task": "garbage_disposal_installation",
+          "aliases": ["install garbage disposal", "new disposal", "replace disposal", "garbage disposal"],
+          "base_low": 150,
+          "base_mid": 275,
+          "base_high": 400,
+          "unit": "per_job",
+          "typical_duration_hours": 1.5,
+          "common_inclusions": ["labor", "removal of old unit", "installation", "testing"],
+          "common_exclusions": ["cost of disposal unit", "electrical work", "plumbing modifications"],
+          "common_red_flags": ["not checking electrical compatibility", "no testing after install"]
+        }
+      ]
+    },
+    {
+      "category": "Repairs",
+      "tasks": [
+        {
+          "task": "leak_repair",
+          "aliases": ["fix leak", "pipe leak", "leaking pipe", "dripping pipe", "water leak"],
+          "base_low": 150,
+          "base_mid": 300,
+          "base_high": 600,
+          "unit": "per_job",
+          "typical_duration_hours": 1.5,
+          "common_inclusions": ["diagnosis", "labor", "basic pipe fittings"],
+          "common_exclusions": ["wall/ceiling repair", "mold remediation", "extensive pipe replacement"],
+          "common_red_flags": ["quoting over phone without inspection", "no warranty on repair"]
+        },
+        {
+          "task": "drain_cleaning",
+          "aliases": ["unclog drain", "clogged drain", "slow drain", "drain backup", "blocked drain"],
+          "base_low": 100,
+          "base_mid": 225,
+          "base_high": 400,
+          "unit": "per_job",
+          "typical_duration_hours": 1,
+          "common_inclusions": ["snaking/augering", "diagnosis", "basic clearing"],
+          "common_exclusions": ["camera inspection", "hydro jetting", "pipe repair"],
+          "common_red_flags": ["pushing camera inspection before trying basic clearing", "no guarantee on clearing"]
+        },
+        {
+          "task": "water_heater_repair",
+          "aliases": ["fix water heater", "no hot water", "water heater not working", "hot water heater repair"],
+          "base_low": 150,
+          "base_mid": 350,
+          "base_high": 600,
+          "unit": "per_job",
+          "typical_duration_hours": 2,
+          "common_inclusions": ["diagnosis", "labor", "common parts like thermocouples or elements"],
+          "common_exclusions": ["water heater replacement", "gas line work", "expansion tank"],
+          "common_red_flags": ["recommending replacement without diagnosis", "no license for gas work"]
+        },
+        {
+          "task": "pipe_repair",
+          "aliases": ["fix pipe", "broken pipe", "burst pipe", "pipe replacement"],
+          "base_low": 200,
+          "base_mid": 450,
+          "base_high": 800,
+          "unit": "per_job",
+          "typical_duration_hours": 2.5,
+          "common_inclusions": ["diagnosis", "labor", "pipe fittings", "leak testing"],
+          "common_exclusions": ["wall/floor repair", "permits", "rerouting"],
+          "common_red_flags": ["not testing after repair", "using temporary fixes as permanent solutions"]
+        }
+      ]
+    },
+    {
+      "category": "Installation",
+      "tasks": [
+        {
+          "task": "water_heater_installation",
+          "aliases": ["install water heater", "new water heater", "replace water heater", "hot water heater install"],
+          "base_low": 800,
+          "base_mid": 1500,
+          "base_high": 2500,
+          "unit": "per_job",
+          "typical_duration_hours": 4,
+          "common_inclusions": ["labor", "removal of old unit", "installation", "connections", "testing"],
+          "common_exclusions": ["cost of water heater", "permits", "expansion tank", "gas line modifications"],
+          "common_red_flags": ["not pulling required permits", "not including disposal of old unit"]
+        },
+        {
+          "task": "sump_pump_installation",
+          "aliases": ["install sump pump", "new sump pump", "sump pump replacement"],
+          "base_low": 500,
+          "base_mid": 900,
+          "base_high": 1500,
+          "unit": "per_job",
+          "typical_duration_hours": 4,
+          "common_inclusions": ["labor", "pit preparation", "pump installation", "discharge line", "testing"],
+          "common_exclusions": ["cost of pump", "battery backup", "drainage modifications"],
+          "common_red_flags": ["not including check valve", "no backup system recommendation"]
+        },
+        {
+          "task": "valve_replacement",
+          "aliases": ["replace valve", "shut-off valve", "water valve", "mixing valve", "the thing that controls hot cold water"],
+          "base_low": 150,
+          "base_mid": 300,
+          "base_high": 500,
+          "unit": "per_job",
+          "typical_duration_hours": 1.5,
+          "common_inclusions": ["labor", "valve", "shutoff and testing"],
+          "common_exclusions": ["wall repair", "permits", "supply line replacement"],
+          "common_red_flags": ["anyone quoting under $100", "not shutting off water properly before work"]
+        }
+      ]
+    }
+  ]
+}

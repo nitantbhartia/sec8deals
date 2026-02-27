@@ -1,0 +1,43 @@
+{
+  "slug": "electrician-cost",
+  "title": "How Much Does an Electrician Cost in 2026?",
+  "meta_description": "Average electrician costs range from $150 to $400 for common jobs. Learn typical electrical prices for outlets, lighting, panel upgrades, and more.",
+  "trade": "electrician",
+  "hero_summary": "The average cost to hire an electrician ranges from $150 to $400 for most common residential jobs. Larger projects like panel upgrades can run $1,500 to $4,000. Electricians typically charge $75 to $150 per hour.",
+  "price_range": {
+    "low": 150,
+    "mid": 300,
+    "high": 500,
+    "unit": "per job (common tasks)"
+  },
+  "sections": [
+    {
+      "heading": "Average Electrician Costs by Service",
+      "content": "Here are typical price ranges for common electrical work:\n\n- **Outlet installation**: $150 - $400\n- **GFCI outlet installation**: $150 - $425\n- **Light switch replacement**: $75 - $275\n- **Light fixture installation**: $100 - $400\n- **Ceiling fan installation**: $150 - $500\n- **Recessed lighting (per light)**: $150 - $400\n- **Circuit breaker replacement**: $150 - $450\n- **Dedicated circuit**: $200 - $700\n- **Electrical panel upgrade**: $1,500 - $4,000"
+    },
+    {
+      "heading": "Factors That Affect Electrical Costs",
+      "content": "Several factors influence electrical work pricing:\n\n- **Permit requirements**: Many electrical modifications require permits ($50-$300) and inspections. Always verify your electrician pulls necessary permits.\n- **Wiring access**: Fishing wire through finished walls costs more than working in exposed framing.\n- **Panel capacity**: If your electrical panel is full, adding new circuits may require a panel upgrade.\n- **Code compliance**: Older homes may need additional work to bring circuits up to current electrical code.\n- **License requirements**: Electrical work almost always requires a licensed electrician. Using an unlicensed worker is both dangerous and may void your insurance."
+    },
+    {
+      "heading": "DIY vs. Hiring an Electrician",
+      "content": "Electrical work is one area where DIY can be genuinely dangerous. A few guidelines:\n\n**Safe for experienced DIYers:**\n- Replacing a light switch (same-for-same)\n- Swapping a light fixture (existing box)\n- Installing a smart thermostat\n\n**Always hire a licensed electrician:**\n- Any new circuit or wiring\n- Panel work\n- Anything involving 240V\n- Outdoor or wet-area electrical\n- Work requiring permits"
+    }
+  ],
+  "faq": [
+    {
+      "question": "How much does an electrician charge per hour?",
+      "answer": "Most electricians charge $75 to $150 per hour, with the national average around $100/hour. Master electricians and those in high-cost areas may charge $150-$200+/hour. Many electricians quote per-job rather than hourly for common tasks."
+    },
+    {
+      "question": "Do I need a permit for electrical work?",
+      "answer": "In most jurisdictions, any new circuit, panel work, or significant modification requires a permit. Simple replacements (same switch, same outlet) typically don't. Your electrician should know local requirements and handle the permit process."
+    },
+    {
+      "question": "How do I verify an electrician is licensed?",
+      "answer": "Check with your state's licensing board or contractor licensing website. Ask to see their license number and verify it online. A licensed electrician should have both a license and insurance — ask for proof of both before work begins."
+    }
+  ],
+  "related_guides": ["plumber-cost", "hvac-repair-cost"],
+  "last_updated": "2026-02-15"
+}

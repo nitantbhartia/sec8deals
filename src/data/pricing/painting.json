@@ -1,0 +1,76 @@
+{
+  "trade": "painter",
+  "display_name": "Painter",
+  "categories": [
+    {
+      "category": "Interior",
+      "tasks": [
+        {
+          "task": "room_painting",
+          "aliases": ["paint room", "interior painting", "paint bedroom", "paint living room", "repaint room"],
+          "base_low": 300,
+          "base_mid": 600,
+          "base_high": 1000,
+          "unit": "per_job",
+          "typical_duration_hours": 6,
+          "common_inclusions": ["labor", "2 coats", "basic prep", "cutting in", "cleanup"],
+          "common_exclusions": ["cost of paint", "primer", "wallpaper removal", "ceiling painting", "trim painting"],
+          "common_red_flags": ["only offering one coat", "no prep or patching included", "using homeowner's paint without discount"]
+        },
+        {
+          "task": "cabinet_painting",
+          "aliases": ["paint cabinets", "kitchen cabinet painting", "cabinet refinishing", "cabinet respray"],
+          "base_low": 1200,
+          "base_mid": 2500,
+          "base_high": 5000,
+          "unit": "per_job",
+          "typical_duration_hours": 24,
+          "common_inclusions": ["labor", "sanding", "priming", "2 coats", "hardware removal/reinstall"],
+          "common_exclusions": ["cost of paint", "new hardware", "interior of cabinets"],
+          "common_red_flags": ["not removing doors for spraying", "brush-only application on large jobs", "no primer"]
+        },
+        {
+          "task": "trim_painting",
+          "aliases": ["paint trim", "baseboard painting", "crown molding painting", "door frame painting"],
+          "base_low": 200,
+          "base_mid": 500,
+          "base_high": 900,
+          "unit": "per_job",
+          "typical_duration_hours": 4,
+          "common_inclusions": ["labor", "light sanding", "2 coats", "taping"],
+          "common_exclusions": ["cost of paint", "trim repair", "caulking"],
+          "common_red_flags": ["not sanding glossy surfaces before painting", "skipping primer on bare wood"]
+        }
+      ]
+    },
+    {
+      "category": "Exterior",
+      "tasks": [
+        {
+          "task": "exterior_house_painting",
+          "aliases": ["paint house exterior", "exterior painting", "house painting outside"],
+          "base_low": 2000,
+          "base_mid": 4000,
+          "base_high": 7000,
+          "unit": "per_job",
+          "typical_duration_hours": 40,
+          "common_inclusions": ["labor", "pressure washing", "scraping", "priming bare spots", "2 coats", "cleanup"],
+          "common_exclusions": ["cost of paint", "wood repair", "lead paint abatement", "trim color change"],
+          "common_red_flags": ["no pressure washing included", "one coat only", "not addressing peeling areas"]
+        },
+        {
+          "task": "deck_staining",
+          "aliases": ["stain deck", "deck refinishing", "deck sealing", "deck painting"],
+          "base_low": 400,
+          "base_mid": 800,
+          "base_high": 1500,
+          "unit": "per_job",
+          "typical_duration_hours": 8,
+          "common_inclusions": ["labor", "pressure washing", "sanding", "1-2 coats of stain"],
+          "common_exclusions": ["cost of stain", "board replacement", "railing repair"],
+          "common_red_flags": ["not pressure washing first", "staining wet wood", "no prep sanding"]
+        }
+      ]
+    }
+  ]
+}

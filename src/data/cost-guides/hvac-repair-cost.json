@@ -1,0 +1,43 @@
+{
+  "slug": "hvac-repair-cost",
+  "title": "How Much Does HVAC Repair Cost in 2026?",
+  "meta_description": "Average HVAC repair costs range from $150 to $700. Learn typical prices for AC repair, furnace repair, and HVAC installation.",
+  "trade": "hvac technician",
+  "hero_summary": "The average cost for HVAC repair ranges from $150 to $700 for most common issues. AC or furnace replacement typically costs $3,000 to $9,000 for labor and installation. Annual tune-ups average $75 to $250.",
+  "price_range": {
+    "low": 150,
+    "mid": 400,
+    "high": 700,
+    "unit": "per repair"
+  },
+  "sections": [
+    {
+      "heading": "Average HVAC Costs by Service",
+      "content": "Here are typical price ranges for common HVAC work:\n\n- **AC repair**: $150 - $700\n- **Furnace repair**: $150 - $650\n- **HVAC tune-up**: $75 - $250\n- **Thermostat installation**: $75 - $325\n- **AC installation (labor)**: $3,000 - $9,000\n- **Furnace installation (labor)**: $2,500 - $7,500\n- **Duct cleaning**: $300 - $600\n- **Refrigerant recharge**: $200 - $500"
+    },
+    {
+      "heading": "Signs You Need HVAC Repair",
+      "content": "Watch for these warning signs that your HVAC system needs attention:\n\n- **Unusual noises**: Banging, squealing, or grinding sounds indicate mechanical problems.\n- **Weak airflow**: Could be a blower issue, clogged filter, or duct problem.\n- **Temperature inconsistency**: Rooms that won't reach set temperature.\n- **High energy bills**: A sudden spike often means your system is working harder than it should.\n- **Frequent cycling**: Turning on and off repeatedly is a sign of a failing component.\n- **Strange odors**: Burning smells or musty odors need immediate attention."
+    },
+    {
+      "heading": "Repair vs. Replace: When to Upgrade",
+      "content": "Consider these factors when deciding between repair and replacement:\n\n- **Age**: AC units last 15-20 years, furnaces 15-30 years. If yours is near the end, replacement often makes more sense.\n- **Cost of repair**: If the repair costs more than 50% of a new system, replacement is usually smarter.\n- **Refrigerant type**: Systems using R-22 (Freon) are expensive to recharge since it's been phased out. Consider upgrading to a system using R-410A.\n- **Energy efficiency**: New systems can be 20-40% more efficient, saving hundreds per year on energy bills."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How often should I service my HVAC system?",
+      "answer": "Most HVAC professionals recommend servicing your system twice a year — once in spring for AC and once in fall for heating. Annual maintenance can extend your system's lifespan by 5-10 years and improve efficiency by 10-25%."
+    },
+    {
+      "question": "Why is my AC running but not cooling?",
+      "answer": "Common causes include: low refrigerant (leak), dirty condenser coils, a failing compressor, a bad capacitor, or a frozen evaporator coil. Start by checking your air filter — a clogged filter is the most common and cheapest fix. If that's not the issue, call an HVAC technician for diagnosis."
+    },
+    {
+      "question": "Can I negotiate HVAC repair costs?",
+      "answer": "Yes. Get 3 quotes and mention competing offers. Ask about senior, military, or first-time customer discounts. Some companies offer financing on large repairs or replacements. Avoid signing maintenance contracts unless you've compared the annual cost to paying per-visit."
+    }
+  ],
+  "related_guides": ["electrician-cost", "plumber-cost"],
+  "last_updated": "2026-02-15"
+}

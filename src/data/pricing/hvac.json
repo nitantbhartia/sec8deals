@@ -1,0 +1,88 @@
+{
+  "trade": "hvac technician",
+  "display_name": "HVAC Technician",
+  "categories": [
+    {
+      "category": "Repair",
+      "tasks": [
+        {
+          "task": "ac_repair",
+          "aliases": ["fix AC", "air conditioner repair", "AC not cooling", "AC broken", "air conditioning repair", "AC not working"],
+          "base_low": 150,
+          "base_mid": 350,
+          "base_high": 700,
+          "unit": "per_job",
+          "typical_duration_hours": 2,
+          "common_inclusions": ["diagnosis", "labor", "common parts like capacitors or contactors"],
+          "common_exclusions": ["refrigerant recharge", "compressor replacement", "ductwork repair"],
+          "common_red_flags": ["recommending full replacement without diagnosis", "charging for refrigerant without finding leak"]
+        },
+        {
+          "task": "furnace_repair",
+          "aliases": ["fix furnace", "heater repair", "furnace not working", "no heat", "heating repair"],
+          "base_low": 150,
+          "base_mid": 350,
+          "base_high": 650,
+          "unit": "per_job",
+          "typical_duration_hours": 2,
+          "common_inclusions": ["diagnosis", "labor", "common parts like ignitor or flame sensor"],
+          "common_exclusions": ["heat exchanger replacement", "ductwork", "gas line work"],
+          "common_red_flags": ["diagnosing cracked heat exchanger without camera proof", "quoting without inspection"]
+        },
+        {
+          "task": "hvac_tune_up",
+          "aliases": ["AC tune up", "furnace tune up", "HVAC maintenance", "seasonal maintenance", "AC service"],
+          "base_low": 75,
+          "base_mid": 150,
+          "base_high": 250,
+          "unit": "per_job",
+          "typical_duration_hours": 1,
+          "common_inclusions": ["inspection", "filter check", "cleaning coils", "testing operation"],
+          "common_exclusions": ["parts replacement", "refrigerant", "duct cleaning"],
+          "common_red_flags": ["finding expensive problems on every tune-up", "pressure to sign maintenance contract"]
+        }
+      ]
+    },
+    {
+      "category": "Installation",
+      "tasks": [
+        {
+          "task": "ac_installation",
+          "aliases": ["new AC", "install air conditioner", "replace AC unit", "central air installation", "new air conditioning"],
+          "base_low": 3000,
+          "base_mid": 5500,
+          "base_high": 9000,
+          "unit": "per_job",
+          "typical_duration_hours": 8,
+          "common_inclusions": ["labor", "removal of old unit", "installation", "refrigerant charge", "testing"],
+          "common_exclusions": ["cost of unit", "ductwork modification", "electrical upgrade", "permits"],
+          "common_red_flags": ["not doing Manual J load calculation", "significantly cheaper than competitors", "no permit"]
+        },
+        {
+          "task": "furnace_installation",
+          "aliases": ["new furnace", "install furnace", "replace furnace", "new heating system"],
+          "base_low": 2500,
+          "base_mid": 4500,
+          "base_high": 7500,
+          "unit": "per_job",
+          "typical_duration_hours": 8,
+          "common_inclusions": ["labor", "removal of old unit", "installation", "gas connections", "testing"],
+          "common_exclusions": ["cost of furnace", "ductwork", "gas line extension", "permits"],
+          "common_red_flags": ["not verifying gas line sizing", "no CO testing after install", "no permit"]
+        },
+        {
+          "task": "thermostat_installation",
+          "aliases": ["install thermostat", "new thermostat", "smart thermostat", "replace thermostat", "Nest install"],
+          "base_low": 75,
+          "base_mid": 175,
+          "base_high": 325,
+          "unit": "per_job",
+          "typical_duration_hours": 1,
+          "common_inclusions": ["labor", "wiring", "programming", "testing"],
+          "common_exclusions": ["cost of thermostat", "adding C-wire", "WiFi setup"],
+          "common_red_flags": ["not checking wire compatibility", "not testing all modes after install"]
+        }
+      ]
+    }
+  ]
+}
