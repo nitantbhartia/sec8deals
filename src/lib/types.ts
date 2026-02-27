@@ -1,24 +1,12 @@
-export interface EstimateRequest {
-  taskDescription: string;
-  zipCode?: string;
-}
+// Re-export engine types used by the frontend
+export type {
+  EstimateResponse,
+  EstimateBand,
+  ConfidenceResult,
+  QuoteCheckResult,
+} from "./engine/types";
 
-export interface EstimateResponse {
-  trade: string;
-  task_category: string;
-  complexity: "simple" | "moderate" | "complex" | "specialist";
-  price_low: number;
-  price_mid: number;
-  price_high: number;
-  inclusions: string[];
-  exclusions: string[];
-  red_flags: string[];
-  search_terms: string[];
-  regional_adjustment?: number;
-  zip_code?: string | null;
-  region?: string | null;
-}
-
+// Legacy types kept for cost-guide pages (unchanged)
 export interface TaskPricing {
   task: string;
   aliases: string[];

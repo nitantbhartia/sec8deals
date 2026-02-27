@@ -1,0 +1,5 @@
+[
+  { "id": "pr_landscaping_fence_install", "task_id": "landscaping_fence_install", "state_code": "ALL", "permit_likelihood": "likely", "permit_cost_low": 50, "permit_cost_mid": 150, "permit_cost_high": 400, "notes": "Most jurisdictions require permits for fences over 6ft; many for any fence." },
+  { "id": "pr_electrical_replace_breaker", "task_id": "electrical_replace_breaker", "state_code": "ALL", "permit_likelihood": "unlikely", "permit_cost_low": 0, "permit_cost_mid": 0, "permit_cost_high": 100, "notes": "Simple breaker swap rarely needs permit. New circuits do." },
+  { "id": "pr_plumbing_water_heater_repair", "task_id": "plumbing_water_heater_repair", "state_code": "ALL", "permit_likelihood": "unlikely", "permit_cost_low": 0, "permit_cost_mid": 0, "permit_cost_high": 0, "notes": "Repairs typically don't require permits. Replacements often do." }
+]
