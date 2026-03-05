@@ -79,10 +79,12 @@ async function fetchFromCrawl4Ai(source: ExternalSource, query: SourceQuery): Pr
   }
 
   const market = query.markets[0] ?? "Unknown, NA";
-  const limit = query.limitPerMarket * Math.max(1, query.markets.length);
+  const requestedLimit = query.limitPerMarket * Math.max(1, query.markets.length);
+  const maxListings = Number(process.env.SECTION8_CRAWL4AI_MAX_LISTINGS ?? "40");
+  const limit = Math.max(1, Math.min(requestedLimit, Number.isFinite(maxListings) ? maxListings : 40));
 
   try {
-    const { stdout } = await execFileAsync("python3", [
+    const { stdout, stderr } = await execFileAsync("python3", [
       "scripts/crawl4ai_scrape.py",
       "--source",
       source,
@@ -98,7 +100,17 @@ async function fetchFromCrawl4Ai(source: ExternalSource, query: SourceQuery): Pr
       maxBuffer: 5 * 1024 * 1024,
     });
 
-    const parsed = JSON.parse(stdout) as { listings?: unknown[]; error?: string };
+    const parsed = JSON.parse(stdout) as { listings?: unknown[]; error?: string; mode?: string };
+    if (parsed.error) {
+      console.error(`[section8:${source}] scraper error: ${parsed.error}`);
+    }
+    if (stderr) {
+      console.error(`[section8:${source}] scraper stderr: ${stderr}`);
+    }
+    if (parsed.mode) {
+      console.log(`[section8:${source}] scraper mode: ${parsed.mode}`);
+    }
+
     const rows = parsed.listings ?? [];
     const listings = rows
       .filter((row): row is Record<string, unknown> => Boolean(row && typeof row === "object"))
