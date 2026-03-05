@@ -42,25 +42,44 @@ function computeMetrics(deal: RawListing): DealMetrics {
 
   const downPayment = deal.askingPrice * ASSUMED_DOWN_PAYMENT_RATIO;
   const financedPrincipal = deal.askingPrice - downPayment;
-  const annualDebtService = monthlyMortgagePayment(financedPrincipal, ASSUMED_INTEREST_RATE, ASSUMED_LOAN_YEARS) * 12;
+  const monthlyDebtService = monthlyMortgagePayment(financedPrincipal, ASSUMED_INTEREST_RATE, ASSUMED_LOAN_YEARS);
+  const annualDebtService = monthlyDebtService * 12;
   const annualCashFlow = annualNetOperatingIncome - annualDebtService;
+  const monthlyCashFlow = annualCashFlow / 12;
 
   const capRate = deal.askingPrice > 0 ? annualNetOperatingIncome / deal.askingPrice : 0;
   const cashOnCashReturn = downPayment > 0 ? annualCashFlow / downPayment : 0;
   const grossRentMultiplier = annualGrossRent > 0 ? deal.askingPrice / annualGrossRent : 99;
+  const debtServiceCoverageRatio = annualDebtService > 0 ? annualNetOperatingIncome / annualDebtService : 0;
+  const breakEvenOccupancy = annualGrossRent > 0 ? (annualOperatingExpenses + annualDebtService) / annualGrossRent : 0;
+  const rentToHudRatio = deal.hudPaymentStandard > 0 ? rentUsed / deal.hudPaymentStandard : 0;
+  const expenseRatio = annualGrossRent > 0 ? annualOperatingExpenses / annualGrossRent : 0;
 
   const vacancyHealth = clamp(1 - deal.vacancyRate / 0.15, 0, 1);
   const neighborhoodHealth = clamp(deal.neighborhoodGrade / 100, 0, 1);
   const marketHealth = (vacancyHealth * 0.6 + neighborhoodHealth * 0.4) * 100;
 
   return {
+    monthlyRentUsed: rentUsed,
+    annualVacancyLoss: vacancyLoss,
+    annualTaxExpense: taxExpense,
+    annualMaintenanceExpense: maintenanceExpense,
+    expenseRatio,
     annualGrossRent,
     annualOperatingExpenses,
     annualNetOperatingIncome,
+    monthlyDebtService,
     annualDebtService,
+    downPayment,
+    financedPrincipal,
+    totalCashInvested: downPayment,
     annualCashFlow,
+    monthlyCashFlow,
     capRate,
     cashOnCashReturn,
+    debtServiceCoverageRatio,
+    breakEvenOccupancy,
+    rentToHudRatio,
     grossRentMultiplier,
     marketHealth,
   };

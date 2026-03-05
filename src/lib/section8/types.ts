@@ -24,13 +24,26 @@ export type RawListing = {
 };
 
 export type DealMetrics = {
+  monthlyRentUsed: number;
+  annualVacancyLoss: number;
+  annualTaxExpense: number;
+  annualMaintenanceExpense: number;
+  expenseRatio: number;
   annualGrossRent: number;
   annualOperatingExpenses: number;
   annualNetOperatingIncome: number;
+  monthlyDebtService: number;
   annualDebtService: number;
+  downPayment: number;
+  financedPrincipal: number;
+  totalCashInvested: number;
   annualCashFlow: number;
+  monthlyCashFlow: number;
   capRate: number;
   cashOnCashReturn: number;
+  debtServiceCoverageRatio: number;
+  breakEvenOccupancy: number;
+  rentToHudRatio: number;
   grossRentMultiplier: number;
   marketHealth: number;
 };

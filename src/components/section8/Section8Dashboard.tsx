@@ -19,6 +19,19 @@ function pct(value: number) {
   return `${(value * 100).toFixed(1)}%`;
 }
 
+function round(value: number) {
+  return new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 }).format(value);
+}
+
+function shortUrl(url: string) {
+  try {
+    const parsed = new URL(url);
+    return parsed.hostname.replace(/^www\./, "");
+  } catch {
+    return "listing";
+  }
+}
+
 function gradeClasses(grade: ScoredDeal["viability"]["grade"]) {
   switch (grade) {
     case "A":
@@ -192,11 +205,13 @@ export function Section8Dashboard({ initialData }: Props) {
                   <tr className="text-left text-xs uppercase tracking-wide text-slate-500">
                     <th className="px-3 py-2">Property</th>
                     <th className="px-3 py-2">Market</th>
+                    <th className="px-3 py-2">Specs</th>
                     <th className="px-3 py-2">Grade</th>
                     <th className="px-3 py-2">Price</th>
                     <th className="px-3 py-2">Cash Flow</th>
                     <th className="px-3 py-2">Cap</th>
                     <th className="px-3 py-2">CoC</th>
+                    <th className="px-3 py-2">DSCR</th>
                     <th className="px-3 py-2">Source</th>
                   </tr>
                 </thead>
@@ -205,6 +220,9 @@ export function Section8Dashboard({ initialData }: Props) {
                     <tr key={deal.id} className="rounded-xl bg-slate-50">
                       <td className="px-3 py-3 font-semibold text-slate-900">{deal.address}</td>
                       <td className="px-3 py-3 text-slate-700">{deal.market}</td>
+                      <td className="px-3 py-3 text-slate-700">
+                        {deal.bedrooms} bd / {deal.bathrooms} ba {deal.sqft ? `/ ${Math.round(deal.sqft)} sqft` : ""}
+                      </td>
                       <td className="px-3 py-3">
                         <span className={`inline-flex rounded-lg border px-2 py-1 text-xs font-bold ${gradeClasses(deal.viability.grade)}`}>
                           {deal.viability.grade} {deal.viability.score}
@@ -214,9 +232,10 @@ export function Section8Dashboard({ initialData }: Props) {
                       <td className="px-3 py-3 text-slate-700">{money(deal.metrics.annualCashFlow)}</td>
                       <td className="px-3 py-3 text-slate-700">{pct(deal.metrics.capRate)}</td>
                       <td className="px-3 py-3 text-slate-700">{pct(deal.metrics.cashOnCashReturn)}</td>
+                      <td className="px-3 py-3 text-slate-700">{round(deal.metrics.debtServiceCoverageRatio)}</td>
                       <td className="px-3 py-3">
                         <a href={deal.sourceUrl} target="_blank" rel="noreferrer" className="text-blue-600 hover:text-blue-700">
-                          {deal.source}
+                          {shortUrl(deal.sourceUrl)}
                         </a>
                       </td>
                     </tr>
@@ -226,6 +245,55 @@ export function Section8Dashboard({ initialData }: Props) {
             </div>
           </section>
         </div>
+
+        <section className="mt-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h2 className="text-lg font-bold text-slate-900">Listing Intelligence and Calculations</h2>
+          <p className="mt-1 text-sm text-slate-500">Full underwriting context for top-ranked deals.</p>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {data.deals.slice(0, 6).map((deal) => (
+              <article key={`details-${deal.id}`} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-semibold text-slate-900">{deal.address}</p>
+                    <p className="text-xs text-slate-500">{deal.market}</p>
+                  </div>
+                  <span className={`inline-flex rounded-lg border px-2 py-1 text-xs font-bold ${gradeClasses(deal.viability.grade)}`}>
+                    {deal.viability.grade} {deal.viability.score}
+                  </span>
+                </div>
+
+                <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
+                  <p className="text-slate-500">Listing URL</p>
+                  <a href={deal.sourceUrl} target="_blank" rel="noreferrer" className="truncate text-right font-semibold text-blue-600 hover:text-blue-700">
+                    {deal.sourceUrl}
+                  </a>
+                  <p className="text-slate-500">Source / ID</p>
+                  <p className="text-right font-semibold text-slate-700">{deal.source} / {deal.id}</p>
+                  <p className="text-slate-500">Updated</p>
+                  <p className="text-right font-semibold text-slate-700">{new Date(deal.updatedAt).toLocaleString()}</p>
+                  <p className="text-slate-500">Asking / HUD Standard</p>
+                  <p className="text-right font-semibold text-slate-700">{money(deal.askingPrice)} / {money(deal.hudPaymentStandard)}</p>
+                  <p className="text-slate-500">Rent Used / Rent-to-HUD</p>
+                  <p className="text-right font-semibold text-slate-700">{money(deal.metrics.monthlyRentUsed)} / {pct(deal.metrics.rentToHudRatio)}</p>
+                  <p className="text-slate-500">NOI / Debt Service</p>
+                  <p className="text-right font-semibold text-slate-700">{money(deal.metrics.annualNetOperatingIncome)} / {money(deal.metrics.annualDebtService)}</p>
+                  <p className="text-slate-500">Cash Flow (Monthly / Annual)</p>
+                  <p className="text-right font-semibold text-slate-700">{money(deal.metrics.monthlyCashFlow)} / {money(deal.metrics.annualCashFlow)}</p>
+                  <p className="text-slate-500">Cap / CoC / DSCR</p>
+                  <p className="text-right font-semibold text-slate-700">{pct(deal.metrics.capRate)} / {pct(deal.metrics.cashOnCashReturn)} / {round(deal.metrics.debtServiceCoverageRatio)}</p>
+                  <p className="text-slate-500">Break-Even / Expense Ratio</p>
+                  <p className="text-right font-semibold text-slate-700">{pct(deal.metrics.breakEvenOccupancy)} / {pct(deal.metrics.expenseRatio)}</p>
+                  <p className="text-slate-500">Vacancy / Taxes / Maintenance</p>
+                  <p className="text-right font-semibold text-slate-700">{money(deal.metrics.annualVacancyLoss)} / {money(deal.metrics.annualTaxExpense)} / {money(deal.metrics.annualMaintenanceExpense)}</p>
+                </div>
+
+                <p className="mt-3 text-xs text-slate-600">
+                  {deal.viability.reasons.join(" • ")}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );
