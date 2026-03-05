@@ -10,3 +10,4 @@ README.md
 *.pem
 npm-debug.log*
 .vercel
+.runtime-data

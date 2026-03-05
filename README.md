@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# sec8deals
 
-## Getting Started
+Open-source Section 8 sourcing and underwriting dashboard.
 
-First, run the development server:
+## What it does
+
+- Ingests property feed data from configurable sources (`AFFORDABLE_HOUSING_FEED_URL`, `HUDDATA_FEED_URL`)
+- Scores each deal from `A` to `F` using cap rate, cash-on-cash, annual cash flow, GRM, and market health
+- Ranks top deals and top markets
+- Shows dashboard at `/section8`
+- Supports optional daily top-10 email digest via Resend
+- Supports daily automation via GitHub Actions (`.github/workflows/section8-daily.yml`)
+
+If no external feed is configured, it auto-falls back to demo market data so the app remains usable.
+
+## Local setup
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000/section8](http://localhost:3000/section8)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Copy into `.env.local`:
 
-## Learn More
+```bash
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+SECTION8_CRON_SECRET=replace_me
 
-To learn more about Next.js, take a look at the following resources:
+# Optional source adapters
+AFFORDABLE_HOUSING_FEED_URL=
+AFFORDABLE_HOUSING_FEED_TOKEN=
+HUDDATA_FEED_URL=
+HUDDATA_FEED_KEY=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Optional email digest via Resend
+RESEND_API_KEY=
+SECTION8_EMAIL_FROM=deals@yourdomain.com
+SECTION8_EMAIL_TO=you@yourdomain.com
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## API endpoints
 
-## Deploy on Vercel
+- `GET /api/section8/deals` - current scored dataset
+- `POST /api/section8/run` - refresh ingestion + scoring
+- `POST /api/section8/email` - send top-10 digest (if email env vars are set)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Use `x-cron-secret: <SECTION8_CRON_SECRET>` for protected POST endpoints.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deploy to Railway
+
+1. Create a new Railway project from this repo.
+2. Ensure `railway.json` and `Dockerfile` are used.
+3. Set the environment variables listed above.
+4. Deploy.
+5. Set `SECTION8_APP_URL` + `SECTION8_CRON_SECRET` as GitHub repo secrets for daily workflow.
+
+## Notes on data sources
+
+- Respect each source website/API terms of service and robots policies.
+- Prefer official APIs or licensed feeds for production ingestion.
+- This project provides adapter hooks; you can swap in RapidAPI or proprietary connectors.

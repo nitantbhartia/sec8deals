@@ -1,0 +1,22 @@
+name: Section8 Daily Run
+
+on:
+  schedule:
+    - cron: "15 15 * * *" # 15:15 UTC (~7:15am PT standard, 8:15am PT daylight)
+  workflow_dispatch:
+
+jobs:
+  run-section8-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger daily data refresh
+        run: |
+          curl -sS -X POST "${{ secrets.SECTION8_APP_URL }}/api/section8/run" \
+            -H "x-cron-secret: ${{ secrets.SECTION8_CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{}'
+
+      - name: Trigger optional digest email
+        run: |
+          curl -sS -X POST "${{ secrets.SECTION8_APP_URL }}/api/section8/email" \
+            -H "x-cron-secret: ${{ secrets.SECTION8_CRON_SECRET }}"

@@ -1,12 +1,14 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sec8deals.app";
+
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://pricemytask.com/sitemap.xml",
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

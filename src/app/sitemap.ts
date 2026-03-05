@@ -1,30 +1,20 @@
 import { MetadataRoute } from "next";
-import { getAllCostGuideSlugs } from "@/lib/cost-guides";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://pricemytask.com";
-
-  const costGuideUrls = getAllCostGuideSlugs().map((slug) => ({
-    url: `${baseUrl}/cost-guide/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly" as const,
-    priority: 0.8,
-  }));
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://sec8deals.app";
 
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 1.0,
+      changeFrequency: "daily",
+      priority: 1,
     },
     {
-      url: `${baseUrl}/cost-guide`,
+      url: `${baseUrl}/section8`,
       lastModified: new Date(),
-      changeFrequency: "weekly",
+      changeFrequency: "daily",
       priority: 0.9,
     },
-    ...costGuideUrls,
   ];
 }

@@ -5,28 +5,17 @@ import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: {
-    default: "PriceMyTask - AI-Powered Home Service Pricing",
-    template: "%s | PriceMyTask",
+    default: "Sec8Deals - Section 8 Deal Intelligence",
+    template: "%s | Sec8Deals",
   },
   description:
-    "Get instant, accurate price estimates for any home service task. Know what plumbing, electrical, HVAC, painting, and more should cost before you hire. Powered by AI.",
+    "Source, score, and rank Section 8 rental opportunities daily across U.S. markets.",
   openGraph: {
-    title: "PriceMyTask - Know What It Should Cost",
-    description:
-      "AI-powered price estimates for plumbing, electrical, HVAC, painting, and more. No sign-up required.",
-    url: "https://pricemytask.com",
-    siteName: "PriceMyTask",
+    title: "Sec8Deals - Daily Section 8 Deal Dashboard",
+    description: "Find top Section 8 opportunities with A-F viability scoring.",
+    url: process.env.NEXT_PUBLIC_SITE_URL || "https://sec8deals.app",
+    siteName: "Sec8Deals",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "PriceMyTask - Know What It Should Cost",
-    description:
-      "Get instant AI-powered price estimates for any home service task.",
-  },
-  robots: {
-    index: true,
-    follow: true,
   },
 };
 
@@ -37,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-white text-gray-900 antialiased">
+      <body className="bg-slate-50 text-slate-900 antialiased">
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
