@@ -23,6 +23,10 @@ export function defaultQuery(): SourceQuery {
   };
 }
 
+function demoFallbackEnabled() {
+  return process.env.SECTION8_ENABLE_DEMO_FALLBACK === "true";
+}
+
 function summarizeMarkets(deals: ScoredDeal[]): MarketSummary[] {
   const grouped = new Map<string, ScoredDeal[]>();
   for (const deal of deals) {
@@ -99,8 +103,33 @@ export async function refreshDeals(query: Partial<SourceQuery> = {}): Promise<De
 
 export async function getDealsDataset(): Promise<DealsDataset> {
   const existing = await readDealsDataset();
-  if (existing && existing.deals.length > 0) {
-    return existing;
+  if (existing) {
+    if (demoFallbackEnabled()) {
+      if (existing.deals.length > 0) {
+        return existing;
+      }
+      return refreshDeals();
+    }
+
+    const nonDemoDeals = existing.deals.filter((deal) => deal.source !== "demo");
+    if (nonDemoDeals.length !== existing.deals.length) {
+      const cleaned: DealsDataset = {
+        ...existing,
+        deals: rankDeals(nonDemoDeals),
+        topMarkets: summarizeMarkets(nonDemoDeals),
+        sourceHealth: {
+          ...existing.sourceHealth,
+          demo: "disabled",
+        },
+      };
+
+      if (cleaned.deals.length > 0) {
+        await writeDealsDataset(cleaned);
+        return cleaned;
+      }
+    } else if (existing.deals.length > 0) {
+      return existing;
+    }
   }
 
   return refreshDeals();
