@@ -1,12 +1,18 @@
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
 import { generateDemoListings } from "./demo-data";
 import type { RawListing, SourceQuery, SourceRunResult } from "./types";
+
+const execFileAsync = promisify(execFile);
+
+type ExternalSource = "affordablehousing" | "huddata";
 
 function numberOrFallback(value: unknown, fallback: number) {
   const n = Number(value);
   return Number.isFinite(n) ? n : fallback;
 }
 
-function parseExternalListing(row: Record<string, unknown>, sourceUrlField: string, source: "affordablehousing" | "huddata") {
+function parseExternalListing(row: Record<string, unknown>, sourceUrlField: string, source: ExternalSource) {
   const city = String(row.city ?? row.City ?? "Unknown");
   const state = String(row.state ?? row.State ?? "NA");
   const id = String(row.id ?? row.listingId ?? `${source}-${city}-${state}-${Math.random().toString(36).slice(2, 7)}`);
@@ -53,10 +59,66 @@ async function fetchJson(url: string, headers: Record<string, string> = {}) {
   return response.json() as Promise<unknown>;
 }
 
+function scrapeUrlsForSource(source: ExternalSource): string[] {
+  const key = source === "affordablehousing" ? "AFFORDABLE_HOUSING_SCRAPE_URLS" : "HUDDATA_SCRAPE_URLS";
+  const raw = process.env[key] ?? "";
+  return raw
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+}
+
+async function fetchFromCrawl4Ai(source: ExternalSource, query: SourceQuery): Promise<SourceRunResult | null> {
+  if (process.env.SECTION8_ENABLE_CRAWL4AI !== "true") {
+    return null;
+  }
+
+  const urls = scrapeUrlsForSource(source);
+  if (urls.length === 0) {
+    return null;
+  }
+
+  const market = query.markets[0] ?? "Unknown, NA";
+  const limit = query.limitPerMarket * Math.max(1, query.markets.length);
+
+  try {
+    const { stdout } = await execFileAsync("python3", [
+      "scripts/crawl4ai_scrape.py",
+      "--source",
+      source,
+      "--urls",
+      urls.join(","),
+      "--limit",
+      String(limit),
+      "--market",
+      market,
+    ], {
+      cwd: process.cwd(),
+      timeout: 90_000,
+      maxBuffer: 5 * 1024 * 1024,
+    });
+
+    const parsed = JSON.parse(stdout) as { listings?: unknown[]; error?: string };
+    const rows = parsed.listings ?? [];
+    const listings = rows
+      .filter((row): row is Record<string, unknown> => Boolean(row && typeof row === "object"))
+      .map((row) => parseExternalListing(row, "sourceUrl", source));
+
+    if (listings.length === 0) {
+      return { source, listings: [], status: "degraded" };
+    }
+
+    return { source, listings, status: "ok" };
+  } catch {
+    return { source, listings: [], status: "degraded" };
+  }
+}
+
 async function fetchFromAffordableHousing(query: SourceQuery): Promise<SourceRunResult> {
   const baseUrl = process.env.AFFORDABLE_HOUSING_FEED_URL;
   if (!baseUrl) {
-    return { source: "affordablehousing", listings: [], status: "disabled" };
+    const scraped = await fetchFromCrawl4Ai("affordablehousing", query);
+    return scraped ?? { source: "affordablehousing", listings: [], status: "disabled" };
   }
 
   try {
@@ -83,7 +145,8 @@ async function fetchFromAffordableHousing(query: SourceQuery): Promise<SourceRun
 async function fetchFromHudData(query: SourceQuery): Promise<SourceRunResult> {
   const baseUrl = process.env.HUDDATA_FEED_URL;
   if (!baseUrl) {
-    return { source: "huddata", listings: [], status: "disabled" };
+    const scraped = await fetchFromCrawl4Ai("huddata", query);
+    return scraped ?? { source: "huddata", listings: [], status: "disabled" };
   }
 
   try {
@@ -115,6 +178,11 @@ export async function fetchListings(query: SourceQuery): Promise<SourceRunResult
 
   const externalListings = [...affordableResult.listings, ...huddataResult.listings];
   if (externalListings.length > 0) {
+    return [affordableResult, huddataResult];
+  }
+
+  const demoFallbackEnabled = process.env.SECTION8_ENABLE_DEMO_FALLBACK === "true";
+  if (!demoFallbackEnabled) {
     return [affordableResult, huddataResult];
   }
 
